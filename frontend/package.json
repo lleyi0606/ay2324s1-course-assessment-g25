@@ -9,13 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
+    "@nextui-org/react": "^2.1.13",
     "autoprefixer": "latest",
     "axios": "latest",
     "clsx": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
+    "framer-motion": "^10.16.4",
     "next": "^13.5.4",
     "next-auth": "latest",
+    "next-google-fonts": "^2.2.0",
     "nodemon": "latest",
     "postcss": "latest",
     "react": "latest",
@@ -26,7 +31,7 @@
   },
   "devDependencies": {
     "@types/node": "latest",
-    "@types/react": "latest",
+    "@types/react": "18.2.28",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "eslint": "latest",

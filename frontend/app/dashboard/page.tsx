@@ -12,17 +12,25 @@ import Link from 'next/link'
 import { IconContext } from 'react-icons/lib'
 
 export default function Dashboard() {
+  interface Question {
+    id: number,
+    title: string,
+    description: string,
+    category: string,
+    complexity: string
+  }
   const [sidebar, setsidebar] = useState(false as boolean);
   const showSideBar = () => setsidebar(!sidebar as boolean);
   const [storedName, setStoredName] = useState('' as string);
-  const [questions, setQuestions] = useState([] as any[]);
+  const [questions, setQuestions] = useState([] as Question[]);
   const [selectedQuestion, setSelectedQuestion] = useState(null as any);
   const [formData, setFormData] = useState({
+    id:0,
     title: '',
     description: '',
     category: '',
     complexity: 'Easy',
-  } as any);
+  } as Question);
 
   useEffect(() => {
     const name = localStorage.getItem('name');
@@ -42,7 +50,7 @@ export default function Dashboard() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    const { title, description, category, complexity } = formData;
+    const { id, title, description, category, complexity } = formData;
 
     if (title.trim() === "") {
       alert("Title cannot be empty.");
@@ -70,6 +78,7 @@ export default function Dashboard() {
 
     // Clear form fields
     setFormData({
+      id:0,
       title: '',
       description: '',
       category: '',

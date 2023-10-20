@@ -4,10 +4,16 @@ import * as IoIcons from 'react-icons/io';
 export const SideBar = [
     {
         title: 'Home',
-        path: '../homepage',
+        path: '../',
         icon: <AiIcons.AiFillHome />,
     },
     {
+        title: 'Manage questions',
+        path: '../',
+        icon: <IoIcons.IoIosPaper/>
+
+    },
+    /* {
         title: 'View profile',
         path: '../profile',
         icon: <IoIcons.IoIosPaper />,
@@ -20,7 +26,7 @@ export const SideBar = [
     {
         title: 'Logout',
         path: '../sign_in',
-    },
+    }, */
     {
         title: 'Delete Account',
         path: '../sign_in',

@@ -26,7 +26,8 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         const user = { id: "1", name: "Deon", password: "password" };
         if (credentials?.username === user.name && credentials?.password === user.password) {
-          return user;
+          localStorage.setItem('name', credentials.username)
+          return {...user, name: user.name};
         } else {
           return null;
         }

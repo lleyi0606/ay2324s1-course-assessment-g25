@@ -1,10 +1,63 @@
-import SignInButtonWrapper from '@/wrappers/SignInButtonWrapper';
+import SignInButtonWrapper from '../wrappers/SignInButtonWrapper';
+import MatchButtonWrapper from '../wrappers/MatchButtonWrapper';
+import DifficultySelectionWrapper from '../wrappers/DifficultySelectionWrapper';
+import UserIconWrapper from '../wrappers/UserIconWrapper';
+import SideBarWrapper from '../wrappers/SideBarWrapper';
 import { getServerSession } from 'next-auth';
+import QuestionsTableWrapper from '../wrappers/QuestionsTableWrapper';
+import * as FaIcons from 'react-icons/fa';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { authOptions } from './api/auth/[...nextauth]/authOptions';
+import { useEffect, useState } from 'react';
+import Head from 'next/head';
+import { SignInIcon } from '../icons';
+import { signIn } from "next-auth/react";
+
 
 export default async function Home() {
+
+  const session = await getServerSession(authOptions);
+
+
+  return (
+    <>
+      <div className="bg-white min-h-screen">
+        <div className="bg-theme flex justify-between items-center h-20 px-5">
+          <div className='flex items-center'>
+            {/*<Link href="#" className="ml-7 mr-2 text-black text-2xl">
+              <FaIcons.FaBars />
+            </Link> */}
+            <SideBarWrapper/>
+            FANCY P 
+          </div>
+          {session
+          ?<UserIconWrapper session={session}></UserIconWrapper>
+          :<SignInButtonWrapper>Sign in</SignInButtonWrapper>        
+          }
+        </div>
+        <main className='my-10 mx-40'>
+          <h1 className='font-dmserif font-semibold text-7xl mb-5'>PeerPrep</h1>
+          <h2 className='font-dmserif italic text-xl'>prep with peers for technical assessments</h2>
+          <div id='matchRequestBox' className='flex items-center justify-between bg-white shadow-md py-4 px-8 rounded-md my-10'>
+            <div className='flex items-center'>
+              <h1 className='font-dmserif font-semibold text-xl'>prepare for a </h1>
+              <DifficultySelectionWrapper/>
+              <h1 className='font-dmserif font-semibold text-xl'>question today</h1>
+            </div>
+            <MatchButtonWrapper session={session}>MATCH</MatchButtonWrapper>
+          </div>
+          <QuestionsTableWrapper/>
+        </main>
+      </div>
+    </>
+
+
+  )
+}
+
+/* export default async function Home() {
   const session = await getServerSession(authOptions);
 
   return (
@@ -51,7 +104,6 @@ export default async function Home() {
       )}
 
       <div>
-        {/* <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]"> */}
         <SignInButtonWrapper>
           Sign in
         </SignInButtonWrapper>
@@ -129,4 +181,4 @@ export default async function Home() {
 
     </main>
   )
-}
+} */
